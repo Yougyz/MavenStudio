@@ -1,8 +1,8 @@
 package org.neo4j.studio.service;
 
-import org.neo4j.graphdb.GraphDatabaseService;
-import org.neo4j.graphdb.Node;
-import org.neo4j.graphdb.Transaction;
+//import org.neo4j.graphdb.GraphDatabaseService;
+//import org.neo4j.graphdb.Node;
+//import org.neo4j.graphdb.Transaction;
 import org.neo4j.studio.domain.Personne;
 import org.neo4j.studio.domain.RelationshipNature;
 import org.neo4j.studio.domain.RelationshipNatureP;
@@ -11,8 +11,8 @@ import org.neo4j.studio.domain.TypeOf;
 import org.neo4j.studio.repository.PersonneRepository;
 import org.neo4j.studio.repository.StructureRepository;
 import org.neo4j.studio.repository.TypeRepository;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+//import org.slf4j.Logger;
+//import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.neo4j.support.node.Neo4jHelper;
 import org.springframework.data.neo4j.template.Neo4jOperations;
@@ -42,8 +42,7 @@ public class DatabasePopulator {
    @Transactional
     public void populateNode() {
  
-        TypeOf type6 = new TypeOf("Tiers");
-        Personne personne = new Personne("Personne");     
+  
         
       
             Structure structure = new Structure("Structure");
@@ -65,25 +64,32 @@ public class DatabasePopulator {
             type3.natureStructure(structure);
             typeRepository.save(type3); 
             
-  
+            Personne personne = new Personne("Personne");
             personneRepository.save(personne);  
-            
+             
             TypeOf type4 = new TypeOf("Physique");
-            typeRepositoryP.save(type4);       
-            RelationshipNatureP r4 = typeRepositoryP.createRelationshipBetween(type4, personne, RelationshipNatureP.class, "NATURE");
-            template.save(r4);
+            typeRepositoryP.save(type4); 
+            type4.naturePersonne(personne);
+            typeRepositoryP.save(type4);             
+            
+            //RelationshipNatureP r4 = typeRepositoryP.createRelationshipBetween(type4, personne, RelationshipNatureP.class, "NATURE");
+            //template.save(r4);
             
            
             TypeOf type5 = new TypeOf("Morale");
-            typeRepositoryP.save(type5);       
-            RelationshipNatureP r5 = typeRepositoryP.createRelationshipBetween(type5, personne, RelationshipNatureP.class, "NATURE");
-            template.save(r5);
+            typeRepositoryP.save(type5);
+            type5.naturePersonne(personne);
+            typeRepositoryP.save(type5);  
+           // RelationshipNatureP r5 = typeRepositoryP.createRelationshipBetween(type5, personne, RelationshipNatureP.class, "NATURE");
+            //template.save(r5);
             
             
-
-            typeRepositoryP.save(type6);       
-            RelationshipNatureP r6 = typeRepositoryP.createRelationshipBetween(type6, personne, RelationshipNatureP.class, "NATURE");
-            template.save(r6);
+            TypeOf type6 = new TypeOf("Tiers");              
+            typeRepositoryP.save(type6);     
+            type6.naturePersonne(personne);
+            typeRepositoryP.save(type6);  
+            //RelationshipNatureP r6 = typeRepositoryP.createRelationshipBetween(type6, personne, RelationshipNatureP.class, "NATURE");
+            //template.save(r6);
 
    
     }
