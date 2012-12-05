@@ -40,11 +40,7 @@ public class DatabasePopulator {
 
     
    @Transactional
-    public void populateNode() {
- 
-  
-        
-      
+    public void populateNode() {               
             Structure structure = new Structure("Structure");
             structureRepository.save(structure);        
             TypeOf type1 = new TypeOf("Administrative");
@@ -68,30 +64,21 @@ public class DatabasePopulator {
             personneRepository.save(personne);  
              
             TypeOf type4 = new TypeOf("Physique");
-            typeRepositoryP.save(type4); 
-            type4.naturePersonne(personne);
-            typeRepositoryP.save(type4);             
-            
-            //RelationshipNatureP r4 = typeRepositoryP.createRelationshipBetween(type4, personne, RelationshipNatureP.class, "NATURE");
-            //template.save(r4);
+            typeRepositoryP.save(type4);                      
+            RelationshipNatureP r4 = typeRepositoryP.createRelationshipBetween(type4, personne, RelationshipNatureP.class, "NATURE");
+            template.save(r4);
             
            
             TypeOf type5 = new TypeOf("Morale");
-            typeRepositoryP.save(type5);
-            type5.naturePersonne(personne);
             typeRepositoryP.save(type5);  
-           // RelationshipNatureP r5 = typeRepositoryP.createRelationshipBetween(type5, personne, RelationshipNatureP.class, "NATURE");
-            //template.save(r5);
+            RelationshipNatureP r5 = typeRepositoryP.createRelationshipBetween(type5, personne, RelationshipNatureP.class, "NATURE");
+            template.save(r5);
             
             
             TypeOf type6 = new TypeOf("Tiers");              
-            typeRepositoryP.save(type6);     
-            type6.naturePersonne(personne);
-            typeRepositoryP.save(type6);  
-            //RelationshipNatureP r6 = typeRepositoryP.createRelationshipBetween(type6, personne, RelationshipNatureP.class, "NATURE");
-            //template.save(r6);
-
-   
+            typeRepositoryP.save(type6);    
+            RelationshipNatureP r6 = typeRepositoryP.createRelationshipBetween(type6, personne, RelationshipNatureP.class, "NATURE");
+            template.save(r6);   
     }
     
    @Transactional
@@ -112,26 +99,7 @@ public class DatabasePopulator {
 	   System.out.println("Libelle de la type : " + type3.getName());
 	   System.out.println("Libelle de la type : " + type4.getName());
 	   System.out.println("Libelle de la type : " + type5.getName());
-       //RelationshipNature r1 = typeRepository.createRelationshipBetween(type1, structure, RelationshipNature.class, "NATURE");
-       
-       //template.save(r1);
-	   
-       
-       
-       /*
-	   type2.natureStructure(structure);
-	   typeRepository.save(type2);
-	   type3.natureStructure(structure);
-	   typeRepository.save(type3);
-	   type4.naturePersonne(personne);
-	   typeRepositoryP.save(type4);
-	   type5.naturePersonne(personne);
-	   typeRepositoryP.save(type5);
-	   type6.naturePersonne(personne);
-	   typeRepositoryP.save(type6);*/
-	   
-	   
-	   
+
     }
    /* @Transactional
     public void cleanDb() {
