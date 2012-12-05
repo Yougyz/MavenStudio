@@ -7,8 +7,8 @@
 <body>
 Bienvenu !!
 <a href="<c:url value="/populate"/>">Installation du référentiel</a></br>
-<a href="<c:url value="views/personne/createForm.jsp"/>">Creation de catergorie de personne</a></br>
-<a href="<c:url value="views/structure/createForm.jsp"/>">Creation de catergorie de structure</a></br>
+<a href="<c:url value="/personne/createForm"/>">Creation de catergorie de personne</a></br>
+<a href="<c:url value="/structure/createForm"/>">Creation de catergorie de structure</a></br>
 </body>
 
 </html>
