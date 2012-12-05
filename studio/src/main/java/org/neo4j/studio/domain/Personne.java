@@ -9,9 +9,12 @@ import java.util.Collection;
 import java.util.Set;
 
 @NodeEntity
-public class Personne {
+public class Personne{
 	@GraphId Long nodeId;
 	
+    @RelatedTo(type = "NATURE", elementClass = TypeOf.class, direction = Direction.INCOMING)
+    private TypeOf typeOf;
+    
 	@Indexed(indexName = "personne")
 	private String name;
 	

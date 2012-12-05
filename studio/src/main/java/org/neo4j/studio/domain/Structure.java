@@ -11,6 +11,9 @@ import java.util.Set;
 public class Structure {
 	@GraphId Long nodeId;
 	
+    @RelatedTo(type = "NATURE", elementClass = TypeOf.class, direction = Direction.INCOMING)
+    private TypeOf typeOf;
+    
 	@Indexed(indexName = "structure")
 	private String libelle;
 	

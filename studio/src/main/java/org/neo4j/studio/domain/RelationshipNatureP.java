@@ -8,28 +8,26 @@ import java.util.Collection;
 import java.util.Set;
 
 @RelationshipEntity(type = "NATURE")
-public class RelationshipNature {
+public class RelationshipNatureP {
 	@GraphId Long nodeId;
 	
     @StartNode
     private TypeOf startNode;
 
     @EndNode
-    private Structure endNode;  
+    private Personne endNode;    
 
-    
-	@Indexed(indexName = "nameRelation")
+	@Indexed(indexName = "nameRelationP")
 	private String name;
     
-    public RelationshipNature() {
+    public RelationshipNatureP() {
     }
 
-    public RelationshipNature(TypeOf startNode, Structure endNode, String name) { 
-        this.startNode = startNode;
-        this.endNode = endNode;
-        this.name = name;
+    public RelationshipNatureP(TypeOf startNode, Personne endNode, String name) { 
+    	this.startNode = startNode;
+    	this.endNode = endNode;
+    	this.name = name;
     }
-
 // getters
     public final TypeOf getStartNode() {
         return startNode;
@@ -38,13 +36,13 @@ public class RelationshipNature {
     	return name;
     }
 
-    public final Structure getEndNode() {
+    public final Personne getEndNode() {
         return endNode;
     }
-    
-    public void setEndNode(Structure endNode) {
-    	this.endNode = endNode;
+    public void setEndNode(Personne endNode) {
+        this.endNode = endNode;
     }
+
     
 	public long getId() {		
 		return nodeId;

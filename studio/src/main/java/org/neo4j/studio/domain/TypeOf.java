@@ -1,5 +1,8 @@
 package org.neo4j.studio.domain;
+import org.neo4j.studio.domain.RelationshipNature;
+import org.neo4j.studio.domain.Structure;
 import org.neo4j.graphdb.Direction;
+import org.neo4j.graphdb.Node;
 import org.neo4j.helpers.collection.IteratorUtil;
 import org.springframework.data.neo4j.annotation.*;
 import org.springframework.data.neo4j.template.Neo4jOperations;
@@ -15,8 +18,15 @@ public class TypeOf {
 	@Indexed(indexName = "typeOf")
 	private String name;
 	
-	@RelatedToVia(type="NATURE",direction=Direction.OUTGOING)
-	private Set<RelationshipNature> relationshipsNature;
+    /*@RelatedTo
+    Collection<RelationshipNature> relationshipNatures;*/
+    
+    @RelatedTo(elementClass = Structure.class, type = "NATURE")
+    private Set<Structure> structures=new HashSet<Structure>(); 
+    
+    @RelatedTo(elementClass = Personne.class, type = "NATURE")
+    private Set<Personne> personnes=new HashSet<Personne>();    
+
 	 
     public TypeOf() {
     }
@@ -35,17 +45,39 @@ public class TypeOf {
 	public long getId() {		
 		return nodeId;
 	} 
-	/* public void natures(Structure s) {
-		  nature.add(new RelationshipNature(this, s));
-	  }  */
+
+ /*   public Iterable<RelationshipNature> getRelationshipNatures() {
+        return relationshipNatures;
+    }
+    public Iterable<RelationshipNatureP> getRelationshipNaturesP() {
+    	return relationshipNaturesp;
+    }
+
+    public RelationshipNature natureStructure(Structure structure, String Name) {
+        final RelationshipNature nature = new RelationshipNature(this, structure, Name);
+        relationshipNatures.add(nature);
+        return nature;
+    }
+   public RelationshipNatureP naturePersonne(Personne personne, String Name) {
+        final RelationshipNatureP natureP = new RelationshipNatureP(this, personne, Name);
+        relationshipNaturesp.add(natureP);
+        return natureP;
+    }*/
 	
-	public Iterable<RelationshipNature> getMemberships() { return relationshipsNature; }
-	
-	public RelationshipNature natureOf(Structure structure) {
-		RelationshipNature nature = new RelationshipNature(this, structure);	
-		relationshipsNature.add(nature);	
-		return nature;	
-	}	
+    public Set<Structure> getStructures() {
+        return structures;
+    }
+
+    public void natureStructure(Structure structure) {
+        this.structures.add(structure);
+    }
+    public Set<Personne> getPersonnes() {
+    	return personnes;
+    }
+    
+    public void naturePersonne(Personne personne) {
+    	this.personnes.add(personne);
+    }
 	
     @Override
     public int hashCode() {

@@ -97,7 +97,7 @@ public class DomainTest {
        //type2.natures (structure);  
        
        // sauvegarde des liens
-       type1.natureOf(structure);
+       //type1.natureOf(structure);
        //RelationshipNature R2=template.save(new RelationshipNature(type2, structure));
        
        // ## recherche pour le test ##

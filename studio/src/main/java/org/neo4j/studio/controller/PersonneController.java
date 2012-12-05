@@ -1,6 +1,8 @@
 package org.neo4j.studio.controller;
 
 
+import org.neo4j.studio.domain.Structure;
+import org.neo4j.studio.service.DatabasePopulator;
 import org.neo4j.helpers.collection.IteratorUtil;
 import org.neo4j.studio.domain.*;
 import org.neo4j.studio.repository.*;
@@ -40,6 +42,9 @@ public class PersonneController {
 	@Autowired
 	private Neo4jTemplate template;   
 	
+	@Autowired
+	private DatabasePopulator populator;
+	
     @RequestMapping( value = "/ajouterPersonne", method = RequestMethod.GET)
     public String addPersonne(Model model) {
     	Personne personne = personneRepository.save(new Personne("Ryo"));
@@ -57,7 +62,7 @@ public class PersonneController {
 
     }
     
-    @Transactional
+    
     @RequestMapping(value = "/populate", headers = "Accept=text/html")
     public String createData(Model model) {
         String StructureLibelle = "Structure";
@@ -92,5 +97,16 @@ public class PersonneController {
 
     }
     
+    @RequestMapping(value = "/populateStructure", method = RequestMethod.GET)
+    public String populateStructure(Model model) {                   
+        populator.populateNode();
+        //populator.populateRelation();
+        return "personne/result";
+    }
+    /*@RequestMapping(value = "/populatePersonne", method = RequestMethod.GET)
+    public String populatePersonne(Model model) {            
+        populator.populatePersonne();
+        return "personne/result";
+    }*/
     
 }

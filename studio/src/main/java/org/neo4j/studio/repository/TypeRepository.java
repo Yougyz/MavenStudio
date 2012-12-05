@@ -13,7 +13,6 @@ import org.springframework.data.neo4j.repository.RelationshipOperationsRepositor
  * @since 02.04.11
  */
 public interface TypeRepository extends GraphRepository<TypeOf>,
-		NamedIndexRepository<TypeOf>,
         RelationshipOperationsRepository<TypeOf>{
 
 	TypeOf findByName(String name);
