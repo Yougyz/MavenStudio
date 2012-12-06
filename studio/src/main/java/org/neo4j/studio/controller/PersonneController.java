@@ -49,7 +49,7 @@ public class PersonneController {
     public String addPersonne(Model model) {
     	Personne personne = personneRepository.save(new Personne("Ryo"));
     	model.addAttribute("variable", personne);
-        return "personne/result";
+        return "views/personne/result";
     }
     
     @RequestMapping(value = "/createPersonne", method = RequestMethod.POST, headers = "Accept=text/html")
