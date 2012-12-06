@@ -42,7 +42,7 @@ public class DatabasePopulator {
     
    @Transactional
     public void populateNode() {   
-	   /*
+	   
             Structure structure = new Structure("Structure");
             structureRepository.save(structure);        
             TypeOf type1 = new TypeOf("Administrative");
@@ -80,7 +80,7 @@ public class DatabasePopulator {
             TypeOf type6 = new TypeOf("Tiers");              
             typeRepositoryP.save(type6);    
             RelationshipNatureP r6 = typeRepositoryP.createRelationshipBetween(type6, personne, RelationshipNatureP.class, "NATURE");
-            template.save(r6);  */ 
+            template.save(r6);  
     }
     
    @Transactional

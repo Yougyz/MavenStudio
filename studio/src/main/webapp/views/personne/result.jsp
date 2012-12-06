@@ -6,7 +6,7 @@
 <head><title>OK</title></head>
 <body>
 
-<a href="<c:url value="/personne/createForm"/>">Retour create personne</a> 
+<a href="<c:url value="views/personne/createForm.jsp"/>">Retour create personne</a> 
 </br>
 Ajout de ${personne.name} réussie !
 </body>
