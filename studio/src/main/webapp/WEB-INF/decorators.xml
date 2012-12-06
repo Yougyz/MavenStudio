@@ -1,4 +1,4 @@
-<decorators defaultdir="/WEB-INF/views/decorators">
+<decorators defaultdir="/views/decorators">
     <decorator name="frontpage" page="frontpage.jsp">
           <pattern>/</pattern>
     </decorator>
