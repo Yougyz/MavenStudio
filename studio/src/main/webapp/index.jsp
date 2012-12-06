@@ -4,7 +4,7 @@
     <h3>Bienvenu sur le proto MDM</h3>
    	<div>	
 		<a href="<c:url value="/populate"/>">Installation du référentiel</a></br></br>
-		<a href="<c:url value="views/personne/createForm.jsp"/>">Creation de catergorie de personne</a></br></br>
-		<a href="<c:url value="views/structure/createForm.jsp"/>">Creation de catergorie de structure</a></br></br>
+		<a href="<c:url value="/initCreateFormPersonne"/>">Creation de categorie de personne</a></br></br>
+		<a href="<c:url value="views/structure/createForm.jsp"/>">Creation de categorie de structure</a></br></br>
     </div>
 </div>

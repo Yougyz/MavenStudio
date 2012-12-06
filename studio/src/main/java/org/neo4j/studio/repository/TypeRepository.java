@@ -3,6 +3,8 @@ package org.neo4j.studio.repository;
 
 
 
+import java.util.List;
+
 import org.neo4j.studio.domain.TypeOf;
 import org.springframework.data.domain.Page;
 import org.springframework.data.neo4j.annotation.Query;
@@ -23,6 +25,6 @@ public interface TypeRepository extends GraphRepository<TypeOf>,
             " match n<-[r:NATURE]-typeOf " +
             " return typeOf " +
             " order by typeOf.name")
-	Page<TypeOf> findTypeOfStructure();
+    List<TypeOf> findTypeOfStructure();
 	
 }

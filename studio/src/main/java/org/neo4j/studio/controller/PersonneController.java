@@ -25,6 +25,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Collection;
 import java.util.Collections;
+import java.util.List;
 
 import javax.jws.WebParam.Mode;
 
@@ -53,24 +54,22 @@ public class PersonneController {
     	model.addAttribute("variable", personne);
         return "personne/result";
     }
-    
+    @RequestMapping(value = "/initCreateFormPersonne", method = RequestMethod.GET, headers = "Accept=text/html")
+    public String createPersonne(Model model ) {
+            List<TypeOf> listTypeOf = typeRepository.findTypeOfStructure();
+            model.addAttribute("listTypeOf", listTypeOf);        	          	        	          	
+        return "personne/createForm";
+    }   
     @RequestMapping(value = "/createPersonne", method = RequestMethod.POST, headers = "Accept=text/html")
     public String createPersonne(Model model, @RequestParam(value = "name",required = false) String name) {
             String name1 = name!=null ? name.trim() : null;
             Personne personne = personneRepository.save(new Personne(name1));
-            Page<TypeOf> listTypeOf = typeRepository.findTypeOfStructure();
+            List<TypeOf> listTypeOf = typeRepository.findTypeOfStructure();
             model.addAttribute("listTypeOf", listTypeOf);          	          	
             model.addAttribute("variable", personne);          	          	
         return "personne/resultCreatePersonne";
     }
-    
-    /*@RequestMapping(value = "/createPersonne", method = RequestMethod.POST, headers = "Accept=text/html")
-    public String listTypeOf(Model model) {
-            String name1 = name!=null ? name.trim() : null;
-            Personne personne = personneRepository.save(new Personne(name1));
-            model.addAttribute("variable", personne);          	          	
-        return "personne/resultCreatePersonne";
-    }*/ 
+
     @RequestMapping(value = "/populate", method = RequestMethod.GET)
     public String populateStructure(Model model) {                   
         populator.populateNode();
