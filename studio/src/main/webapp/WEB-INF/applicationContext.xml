@@ -18,7 +18,7 @@
     <neo4j:config storeDirectory="data/graph.db"/>
     <neo4j:repositories base-package="org.neo4j.studio.repository"/>
 
-    <!-- <tx:annotation-driven mode="proxy"/>  -->
-    <tx:annotation-driven mode="aspectj" transaction-manager="transactionManager" />
+    <tx:annotation-driven mode="proxy"/>
+    <!-- <tx:annotation-driven mode="aspectj" transaction-manager="transactionManager" />  -->
     
 </beans>
