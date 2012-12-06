@@ -14,7 +14,7 @@
 		<div id="header">
 			<div id="header-topbar">
 			    <div id="header-menu">
-			    <!-- include navigation-->					
+			    header front<!-- include navigation-->					
 				</div>
 			</div>
 			<div id="header-splash">
@@ -25,5 +25,6 @@
             <decorator:body />
 	    </div>
 	    <!-- include footer-->
+	    footer front
 	</body>
 </html>

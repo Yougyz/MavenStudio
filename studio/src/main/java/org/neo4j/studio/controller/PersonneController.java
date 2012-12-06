@@ -1,7 +1,9 @@
 package org.neo4j.studio.controller;
 
 
+import org.neo4j.studio.domain.Personne;
 import org.neo4j.studio.domain.Structure;
+import org.neo4j.studio.domain.TypeOf;
 import org.neo4j.studio.service.DatabasePopulator;
 import org.neo4j.helpers.collection.IteratorUtil;
 import org.neo4j.studio.domain.*;
@@ -49,64 +51,32 @@ public class PersonneController {
     public String addPersonne(Model model) {
     	Personne personne = personneRepository.save(new Personne("Ryo"));
     	model.addAttribute("variable", personne);
-        return "views/personne/result";
+        return "personne/result";
     }
     
     @RequestMapping(value = "/createPersonne", method = RequestMethod.POST, headers = "Accept=text/html")
     public String createPersonne(Model model, @RequestParam(value = "name",required = false) String name) {
             String name1 = name!=null ? name.trim() : null;
             Personne personne = personneRepository.save(new Personne(name1));
+            Page<TypeOf> listTypeOf = typeRepository.findTypeOfStructure();
+            model.addAttribute("listTypeOf", listTypeOf);          	          	
             model.addAttribute("variable", personne);          	          	
-        return "personne/result";
-
-
+        return "personne/resultCreatePersonne";
     }
     
-    
-    @RequestMapping(value = "/populate", headers = "Accept=text/html")
-    public String createData(Model model) {
-        String StructureLibelle = "Structure";
-        String TypeStructure1 = "Administrative";
-        String TypeStructure2 = "Fonctionnelle";
-        
-        //Création de l'element structure       
-        Structure structure = structureRepository.save(new Structure(StructureLibelle));
-        
-        //Création des types        
-        TypeOf type1 = typeRepository.save(new TypeOf(TypeStructure1));
-        
-        
-        TypeOf type2 = typeRepository.save(new TypeOf(TypeStructure2));
-        
-        //Création des relations             
-        //type1.natures (structure);               
-        //type2.natures (structure);  
-        
-        //type1.natureOf(structure);
-        
-        //template.save(new RelationshipNature(type1, structure));
-        //template.save(new RelationshipNature(type2, structure));
-        // sauvegarde des liens       
-        //template.save(type1);                
-        //template.save(type2);            	
-    	
-        //Personne personne = personneRepository.save(new Personne(name1));
-            //model.addAttribute("variable", personne);          	          	
-        return "personne/result";
-
-
-    }
-    
-    @RequestMapping(value = "/populateStructure", method = RequestMethod.GET)
+    /*@RequestMapping(value = "/createPersonne", method = RequestMethod.POST, headers = "Accept=text/html")
+    public String listTypeOf(Model model) {
+            String name1 = name!=null ? name.trim() : null;
+            Personne personne = personneRepository.save(new Personne(name1));
+            model.addAttribute("variable", personne);          	          	
+        return "personne/resultCreatePersonne";
+    }*/ 
+    @RequestMapping(value = "/populate", method = RequestMethod.GET)
     public String populateStructure(Model model) {                   
         populator.populateNode();
         //populator.populateRelation();
         return "personne/result";
     }
-    /*@RequestMapping(value = "/populatePersonne", method = RequestMethod.GET)
-    public String populatePersonne(Model model) {            
-        populator.populatePersonne();
-        return "personne/result";
-    }*/
+
     
 }

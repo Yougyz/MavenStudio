@@ -15,6 +15,7 @@
 		<div id="header">
 			<div id="header-topbar">
 			    <div id="header-menu">
+			    <%@ include file="/views/includes/navigation.jsp" %>
 					 <!-- include navigation -->
 				</div>
 			</div>
@@ -24,5 +25,6 @@
             <decorator:body />
 	    </div>
 	    <!-- include footer -->
+	    <%@ include file="/views/includes/footer.jsp" %>
 	</body>
 </html>
