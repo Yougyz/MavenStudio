@@ -1,18 +1,18 @@
 package org.neo4j.studio.service;
 
-//import org.neo4j.graphdb.GraphDatabaseService;
-//import org.neo4j.graphdb.Node;
-//import org.neo4j.graphdb.Transaction;
-import org.neo4j.studio.domain.Personne;
+import org.neo4j.graphdb.GraphDatabaseService;
+import org.neo4j.graphdb.Node;
+import org.neo4j.graphdb.Transaction;
 import org.neo4j.studio.domain.RelationshipNature;
-import org.neo4j.studio.domain.RelationshipNatureP;
 import org.neo4j.studio.domain.Structure;
+import org.neo4j.studio.domain.Personne;
+import org.neo4j.studio.domain.RelationshipNatureP;
 import org.neo4j.studio.domain.TypeOf;
-import org.neo4j.studio.repository.PersonneRepository;
 import org.neo4j.studio.repository.StructureRepository;
+import org.neo4j.studio.repository.PersonneRepository;
 import org.neo4j.studio.repository.TypeRepository;
-//import org.slf4j.Logger;
-//import org.slf4j.LoggerFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.neo4j.support.node.Neo4jHelper;
 import org.springframework.data.neo4j.template.Neo4jOperations;
@@ -23,6 +23,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static java.util.Arrays.asList;
+
 
 /**
  * @author mh
@@ -40,7 +41,8 @@ public class DatabasePopulator {
 
     
    @Transactional
-    public void populateNode() {               
+    public void populateNode() {   
+	   /*
             Structure structure = new Structure("Structure");
             structureRepository.save(structure);        
             TypeOf type1 = new TypeOf("Administrative");
@@ -78,12 +80,13 @@ public class DatabasePopulator {
             TypeOf type6 = new TypeOf("Tiers");              
             typeRepositoryP.save(type6);    
             RelationshipNatureP r6 = typeRepositoryP.createRelationshipBetween(type6, personne, RelationshipNatureP.class, "NATURE");
-            template.save(r6);   
+            template.save(r6);  */ 
     }
     
    @Transactional
     public void populateRelation() {
-	   Personne personne = personneRepository.findByPropertyValue("name", "personne");
+	   
+/*	   Personne personne = personneRepository.findByPropertyValue("name", "personne");
 	   Structure structure = structureRepository.findByPropertyValue("libelle", "structure");
 	   TypeOf type1 = typeRepository.findByPropertyValue("name", "Administrative");
 	   TypeOf type2 = typeRepository.findByPropertyValue("name", "Fonctionnelle");
@@ -99,7 +102,7 @@ public class DatabasePopulator {
 	   System.out.println("Libelle de la type : " + type3.getName());
 	   System.out.println("Libelle de la type : " + type4.getName());
 	   System.out.println("Libelle de la type : " + type5.getName());
-
+*/
     }
    /* @Transactional
     public void cleanDb() {
