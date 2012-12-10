@@ -21,7 +21,7 @@ public interface TypeRepository extends GraphRepository<TypeOf>,
 
 	TypeOf findByName(String name);
 	
-    @Query("start n=node:__types__(className='org.neo4j.studio.domain.Structure')" +
+    @Query("start n=node:__types__(className='org.neo4j.studio.domain.Personne')" +
             " match n<-[r:NATURE]-typeOf " +
             " return typeOf " +
             " order by typeOf.name")
