@@ -14,6 +14,7 @@ import org.neo4j.studio.repository.TypeRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.neo4j.support.Neo4jTemplate;
 import org.springframework.data.neo4j.support.node.Neo4jHelper;
 import org.springframework.data.neo4j.template.Neo4jOperations;
 import org.springframework.stereotype.Service;
@@ -37,7 +38,7 @@ public class DatabasePopulator {
     @Autowired StructureRepository structureRepository;
     @Autowired PersonneRepository personneRepository;
     @Autowired Neo4jOperations template;
-    
+    @Autowired private Neo4jTemplate templateDb;    
 
     
    @Transactional
@@ -47,20 +48,18 @@ public class DatabasePopulator {
             structureRepository.save(structure);        
             TypeOf type1 = new TypeOf("Administrative");
             typeRepository.save(type1);
-            type1.natureStructure(structure);
-            typeRepository.save(type1);        
-            
+            RelationshipNature r1 = typeRepository.createRelationshipBetween(type1, structure, RelationshipNature.class, "NATURE");
+            template.save(r1);                
                    
             TypeOf type2 = new TypeOf("Fonctionnelle");
-            typeRepository.save(type2);
-            type2.natureStructure(structure);
-            typeRepository.save(type2);  
-            
+            typeRepository.save(type2);    
+            RelationshipNature r2 = typeRepository.createRelationshipBetween(type2, structure, RelationshipNature.class, "NATURE");
+            template.save(r2);
                    
             TypeOf type3 = new TypeOf("Compentence");
             typeRepository.save(type3);
-            type3.natureStructure(structure);
-            typeRepository.save(type3); 
+            RelationshipNature r3 = typeRepository.createRelationshipBetween(type3, structure, RelationshipNature.class, "NATURE");
+            template.save(r3);
             
             Personne personne = new Personne("Personne");
             personneRepository.save(personne);  
@@ -84,28 +83,8 @@ public class DatabasePopulator {
     }
     
    @Transactional
-    public void populateRelation() {
-	   
-/*	   Personne personne = personneRepository.findByPropertyValue("name", "personne");
-	   Structure structure = structureRepository.findByPropertyValue("libelle", "structure");
-	   TypeOf type1 = typeRepository.findByPropertyValue("name", "Administrative");
-	   TypeOf type2 = typeRepository.findByPropertyValue("name", "Fonctionnelle");
-	   TypeOf type3 = typeRepository.findByPropertyValue("name", "Compentence");
-	   TypeOf type4 = typeRepositoryP.findByPropertyValue("name", "Physique");
-	   TypeOf type5 = typeRepositoryP.findByPropertyValue("name", "Morale");
-	   TypeOf type6 = typeRepositoryP.findByPropertyValue("name", "Tiers");
-   	   
-	   System.out.println("Libelle de la structure : " + structure.getLibelle());
-	   System.out.println("Libelle de la personne : " + personne.getName());
-	   System.out.println("Libelle de la type : " + type1.getName());
-	   System.out.println("Libelle de la type : " + type2.getName());
-	   System.out.println("Libelle de la type : " + type3.getName());
-	   System.out.println("Libelle de la type : " + type4.getName());
-	   System.out.println("Libelle de la type : " + type5.getName());
-*/
-    }
-   /* @Transactional
-    public void cleanDb() {
-        new Neo4jDatabaseCleaner(template).cleanDb();
-    }*/
+   public void cleanDb() {
+	   Neo4jHelper.cleanDb(templateDb);
+   }
+   
 }

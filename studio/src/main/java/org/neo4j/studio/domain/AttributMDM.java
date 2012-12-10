@@ -8,21 +8,32 @@ import java.util.Collection;
 import java.util.Set;
 
 @NodeEntity
-public class MetaDataCat {
+public class AttributMDM {
 	@GraphId Long nodeId;
 	
 	@Indexed
-	private String name;
+	private String name;		
+
+	private String typeatt;		
 	
-    public MetaDataCat() {
+    public AttributMDM() {
     }
 
-    public MetaDataCat(String name) { 
+    public AttributMDM(String name) { 
         this.name = name;  
     }
-// getters
+    
+    // getters
     public final String getName() {
         return name;
     }    
-	
+    public void setName(String name) {
+        this.name = name;
+    }	
+    public final String getTypeatt() {
+        return typeatt;
+    }    
+    public void setTypeatt(String typeatt) {
+        this.typeatt = typeatt;
+    }	
 }

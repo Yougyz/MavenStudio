@@ -2,8 +2,10 @@ package org.neo4j.studio.controller;
 
 
 import org.neo4j.studio.domain.Personne;
+import org.neo4j.studio.domain.RelationshipNatureP;
 import org.neo4j.studio.domain.Structure;
 import org.neo4j.studio.domain.TypeOf;
+import org.neo4j.studio.service.CategoryService;
 import org.neo4j.studio.service.DatabasePopulator;
 import org.neo4j.helpers.collection.IteratorUtil;
 import org.neo4j.studio.domain.*;
@@ -33,20 +35,20 @@ import javax.jws.WebParam.Mode;
 @Controller
 public class PersonneController {
 	
-	@Autowired
-	protected PersonneRepository personneRepository;
+	@Autowired protected PersonneRepository personneRepository;
 	   
-	@Autowired
-	protected StructureRepository structureRepository;
-	   
-	@Autowired
-	protected TypeRepository typeRepository;
+	@Autowired protected StructureRepository structureRepository;
+
 	
-	@Autowired
-	private Neo4jTemplate template;   
+	@Autowired protected TypeRepository typeRepository;
+	
+	@Autowired private Neo4jTemplate template;   
 	
 	@Autowired
 	private DatabasePopulator populator;
+	
+	@Autowired
+	private CategoryService categoryService;
 	
     @RequestMapping( value = "/ajouterPersonne", method = RequestMethod.GET)
     public String addPersonne(Model model) {
@@ -68,14 +70,18 @@ public class PersonneController {
             model.addAttribute("listTypeOf", listTypeOf);          	          	
             model.addAttribute("variable", personne);          	          	
         return "personne/resultCreatePersonne";
-    }
-
+    }  
+    
+    //Administration de la base
     @RequestMapping(value = "/populate", method = RequestMethod.GET)
     public String populateStructure(Model model) {                   
-        populator.populateNode();
-        //populator.populateRelation();
-        return "personne/result";
+        populator.populateNode();        
+        return "admin/resultInstallation";
     }
-
+    @RequestMapping(value = "/cleandb", method = RequestMethod.GET)
+    public String ClearDB(Model model) {                   
+        populator.cleanDb();
+        return "admin/resultCleandb";
+    }
     
 }

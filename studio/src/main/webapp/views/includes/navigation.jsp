@@ -16,8 +16,9 @@
           </c:choose> 
           -->
          <a href="<c:url value="/index.jsp" />">Accueil</a>
+          <a href="<c:url value="/views/admin/index.jsp" />">Administration DB</a>
          <a href="<c:url value="/viewBD" />">Vue BD</a>
-         <a href="<c:url value="#" />">Modélisation</a>
+         <a href="<c:url value="/views/modelisation/index.jsp" />">Modélisation</a>
          <a href="<c:url value="#" />">Intégration</a>
          <a href="<c:url value="#" />">Fiabilisation</a>                                     
 </div>

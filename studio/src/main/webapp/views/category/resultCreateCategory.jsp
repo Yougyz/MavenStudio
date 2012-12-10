@@ -8,7 +8,7 @@
 
 <a href="<c:url value="/initCreateFormPersonne"/>">Retour create personne</a> 
 </br>
-Ajout de ${variable.name} réussie !
+Ajout de la catégorie ${category.name} a réussi !
 </body>
 
 </html>

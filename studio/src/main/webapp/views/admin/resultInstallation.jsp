@@ -5,10 +5,8 @@
 <html>
 <head><title>OK</title></head>
 <body>
-
-<a href="<c:url value="/initCreateFormPersonne"/>">Retour create personne</a> 
 </br>
-Ajout de ${variable.name} réussie !
+La base de données installée avec succès !
 </body>
 
 </html>
